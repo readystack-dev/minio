@@ -1,0 +1,44 @@
+{
+  "bases": [
+    {
+      "digest": "sha256:79ecd0a7157c7a4cf3b281ced8465350591bf54fedab540e75374a003e1fde7e",
+      "layout": "bases/golang_1.26.11-bookworm_dc40a13b6130.oci",
+      "ref": "golang:1.26.11-bookworm@sha256:dc40a13b61304647ed7e5d581d246b86413dfc29d63c6d018310feb93cd98fc0"
+    },
+    {
+      "digest": "sha256:9a04f13b3f80ef056361e30868593b1cfd2279fe19e4081cb93a90bf56819d6a",
+      "layout": "bases/ubuntu_24.04_9c7f200c07e3.oci",
+      "ref": "ubuntu:24.04@sha256:9c7f200c07e3d4a03e7249d2c16bf66a51120fb876aa2242cf31451412543289"
+    }
+  ],
+  "engine": {
+    "archive": "toolchain/buildkit.tar",
+    "image_digest": "sha256:e0e67ea9c4bb07bdef683e29f70f3b623d1eb9c82274a9ec04e6bb0511449fb0",
+    "kind": "buildkit",
+    "tag": "moby/buildkit:v0.31.2"
+  },
+  "inputs": {
+    "context": ".",
+    "dockerfile": "Dockerfile.offline.pinned",
+    "mtime_policy": "clamp",
+    "source_date_epoch": 1795161125,
+    "tree_hash": "sha256:b890f8bbfc424159e8ee312164058bbb8fcfa962cfb26027cd13e2c76979814e"
+  },
+  "probe": {
+    "env": {
+      "MINIO_ROOT_USER": "verify-admin"
+    },
+    "http_path": "/minio/health/live",
+    "port": 9000,
+    "secrets": [
+      "MINIO_ROOT_PASSWORD"
+    ],
+    "timeout_s": 180
+  },
+  "schema": "readystack-rebuild-bundle/v0.1",
+  "subject": {
+    "config_digest": "sha256:053b6e5786a5a900141f18146f001233b4734f4e452c228c03637707efacf9cc",
+    "image_manifest_digest": "sha256:b8f540021c62e0e113afce0aa0f180b8a82e7209ed0f2a03b350748729bb8311",
+    "name": "docker.io/readystack/minio:RELEASE.2025-10-15T17-29-55Z-CE-ubuntu24.04-r13"
+  }
+}

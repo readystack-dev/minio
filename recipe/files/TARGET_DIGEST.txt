@@ -1,0 +1,8 @@
+image_manifest_digest=sha256:b8f540021c62e0e113afce0aa0f180b8a82e7209ed0f2a03b350748729bb8311
+config_digest=sha256:053b6e5786a5a900141f18146f001233b4734f4e452c228c03637707efacf9cc
+tag=readystack/minio:RELEASE.2025-10-15T17-29-55Z-CE-ubuntu24.04-r13
+probe_port=9000
+probe_path=/minio/health/live
+probe_timeout=180
+verify_env=MINIO_ROOT_USER=verify-admin
+verify_secret=MINIO_ROOT_PASSWORD

@@ -1,0 +1,178 @@
+{
+  "apt_refresh": [
+    {
+      "min_version": "2.8.4ubuntu0.1",
+      "package": "apt",
+      "reason": "CVE-2026-109518: apt 2.8.3 -> 2.8.4ubuntu0.1"
+    },
+    {
+      "min_version": "2.8.4ubuntu0.1",
+      "package": "libapt-pkg6.0t64",
+      "reason": "CVE-2026-109518: libapt-pkg6.0t64 2.8.3 -> 2.8.4ubuntu0.1"
+    },
+    {
+      "min_version": "10.42-4ubuntu2.2",
+      "package": "libpcre2-8-0",
+      "reason": "CVE-2026-103111, CVE-2026-86145, CVE-2026-89156, CVE-2026-89157 \u2026: libpcre2-8-0 10.42-4ubuntu2.1 -> 10.42-4ubuntu2.2"
+    },
+    {
+      "min_version": "2.39-0ubuntu8.12",
+      "package": "libc-bin",
+      "reason": "CVE-2026-18374, CVE-2026-84243, CVE-2026-8674, CVE-2026-86805 \u2026: libc-bin 2.39-0ubuntu8.9 -> 2.39-0ubuntu8.12"
+    },
+    {
+      "min_version": "2.39-0ubuntu8.12",
+      "package": "libc6",
+      "reason": "CVE-2026-18374, CVE-2026-84243, CVE-2026-8674, CVE-2026-86805 \u2026: libc6 2.39-0ubuntu8.9 -> 2.39-0ubuntu8.12"
+    }
+  ],
+  "binaries_from_component_images": [],
+  "binaries_from_source": [
+    {
+      "build_tags": [
+        "kqueue"
+      ],
+      "cgo_enabled": 0,
+      "ldflags": "-s -w -X github.com/minio/minio/cmd.Version=2025-10-15T17-29-55Z -X github.com/minio/minio/cmd.ReleaseTag=RELEASE.2025-10-15T17-29-55Z -X github.com/minio/minio/cmd.CommitID=9e49d5e7a648f00e26f2246f4dc28e6b07f8c84a -X github.com/minio/minio/cmd.ShortCommitID=9e49d5e7a648 -X github.com/minio/minio/cmd.CopyrightYear=2025",
+      "main_pkg": ".",
+      "name": "minio",
+      "out_path": "/usr/bin/minio",
+      "verify_subcmd": "--version"
+    }
+  ],
+  "build_method": "source-rebuild-go",
+  "chain_id": 1152,
+  "dep_bumps": [
+    {
+      "module": "golang.org/x/crypto",
+      "to": "v0.56.0",
+      "why": "2026 x/crypto batch (CVE-2026-46595 etc., fixed 0.52.0) RAISED to 0.52.0 by cve-presweep (GHSA-x527-x647-q7gg). | RAISED: chain 467 verdict 2026-09-30: fixable C/H on the RELEASE.2025-10-15 tree (scout-fixable.py)"
+    },
+    {
+      "module": "golang.org/x/net",
+      "to": "v0.62.0",
+      "why": "GO-2026-6860, GO-2026-6866: golang.org/x/net v0.60.0 -> 0.62.0 (was v0.60.0)"
+    },
+    {
+      "module": "golang.org/x/text",
+      "to": "v0.41.0",
+      "why": "BiDi/normalization CVEs"
+    },
+    {
+      "module": "golang.org/x/sys",
+      "to": "v0.47.0",
+      "why": "transitive floor"
+    },
+    {
+      "module": "golang.org/x/oauth2",
+      "to": "v0.36.0",
+      "why": "oauth2 CVE carrier"
+    },
+    {
+      "module": "google.golang.org/grpc",
+      "to": "v1.83.2",
+      "why": "CRIT CVE-2026-33186 (Improper Authorization) RAISED to 1.82.1 by cve-presweep (GHSA-hrxh-6v49-42gf). | RAISED: chain 467 verdict 2026-09-30: fixable C/H on the RELEASE.2025-10-15 tree (scout-fixable.py) | RAISED to v1.83.2 2026-09-30: minio chain 468 verdict (grpc 1.83.1 -> 1.83.2 fixable C/H)"
+    },
+    {
+      "module": "go.opentelemetry.io/otel",
+      "to": "v1.43.0",
+      "why": "align with otel/sdk"
+    },
+    {
+      "module": "go.opentelemetry.io/otel/sdk",
+      "to": "v1.43.0",
+      "why": "HIGH CVE-2026-39883 + CVE-2026-24051"
+    },
+    {
+      "module": "github.com/prometheus/prometheus",
+      "to": "v0.311.3",
+      "why": "HIGH CVE-2026-42154 + CVE-2026-42151"
+    },
+    {
+      "module": "github.com/go-jose/go-jose/v4",
+      "to": "v4.1.6",
+      "why": "GHSA-mgcc-cww5-fp2q / CVE-2026-116587 (high, published 2026-10-27): github.com/go-jose/go-jose/v4 v4.1.4 -> v4.1.6 (scripts/cve-floor.py) (was v4.1.6)"
+    },
+    {
+      "module": "github.com/buger/jsonparser",
+      "to": "v1.1.2",
+      "why": "HIGH CVE-2026-32285 (OOB Read)"
+    },
+    {
+      "module": "github.com/apache/thrift",
+      "to": "v0.25.0",
+      "why": "CVE-2026-63772, CVE-2026-66055, CVE-2026-82458, CVE-2026-83663 \u2026: github.com/apache/thrift v0.24.0 -> 0.25.0 (was v0.24.0)"
+    },
+    {
+      "module": "github.com/nats-io/nats-server/v2",
+      "to": "v2.11.15",
+      "why": "GHSA-vprv-35vv-q339 (HIGH) \u2014 github.com/nats-io/nats-server/v2 2.11.1 is in the vulnerable range; fixed in 2.11.15. Found by scripts/cve-presweep.py against the upstream go.mod BEFORE driving, not after a wasted verdict park. Pinned to the exact fixed version, not @latest, to keep the input set declarative for archive-forward reproducibility."
+    },
+    {
+      "module": "github.com/rabbitmq/amqp091-go",
+      "to": "v1.13.0",
+      "why": "chain 467 verdict 2026-09-30: fixable C/H on the RELEASE.2025-10-15 tree (scout-fixable.py)"
+    },
+    {
+      "module": "go.etcd.io/etcd/api/v3",
+      "to": "v3.5.33",
+      "why": "chain 467 verdict 2026-09-30: fixable C/H on the RELEASE.2025-10-15 tree (scout-fixable.py); the three etcd 3.5 modules move together"
+    },
+    {
+      "module": "go.etcd.io/etcd/client/v3",
+      "to": "v3.5.33",
+      "why": "chain 467 verdict 2026-09-30: fixable C/H on the RELEASE.2025-10-15 tree (scout-fixable.py); the three etcd 3.5 modules move together"
+    },
+    {
+      "module": "go.etcd.io/etcd/client/pkg/v3",
+      "to": "v3.5.33",
+      "why": "chain 467 verdict 2026-09-30: fixable C/H on the RELEASE.2025-10-15 tree (scout-fixable.py); the three etcd 3.5 modules move together"
+    },
+    {
+      "module": "github.com/klauspost/compress",
+      "to": "v1.20.2",
+      "why": "GO-2026-6865: github.com/klauspost/compress v1.18.7 -> 1.20.2 (was v1.18.7)"
+    }
+  ],
+  "expected_residuals": [],
+  "images": [
+    {
+      "digest": "sha256:dc40a13b61304647ed7e5d581d246b86413dfc29d63c6d018310feb93cd98fc0",
+      "ref": "golang:1.26.11-bookworm",
+      "role": "builder"
+    },
+    {
+      "digest": "sha256:dc40a13b61304647ed7e5d581d246b86413dfc29d63c6d018310feb93cd98fc0",
+      "ref": "golang:1.26.11-bookworm",
+      "role": "offline_builder"
+    },
+    {
+      "digest": "sha256:9c7f200c07e3d4a03e7249d2c16bf66a51120fb876aa2242cf31451412543289",
+      "ref": "ubuntu:24.04",
+      "role": "base"
+    }
+  ],
+  "mod_replaces": [],
+  "runtime_base": {
+    "kind": "chisel",
+    "shell": true,
+    "tools": [
+      "sed",
+      "coreutils"
+    ]
+  },
+  "schema": "kitforge.toolchain_lock.v1",
+  "slug": "minio",
+  "source": {
+    "builder_image": "golang:1.26.11-bookworm",
+    "commit": "9e49d5e7a648f00e26f2246f4dc28e6b07f8c84a",
+    "commit_epoch": 1760549395,
+    "go_version_required": "1.24.0",
+    "ref": "RELEASE.2025-10-15T17-29-55Z",
+    "repo": "https://github.com/minio/minio",
+    "source_date_epoch": 1795161125,
+    "source_date_epoch_basis": "release-cut",
+    "source_date_epoch_provenance": "the time release RELEASE.2025-10-15T17-29-55Z-CE-ubuntu24.04-r13 was cut (2026-11-20T07:52:05Z), by scripts/retarget.py --rev-bump: ReadyStack dates an image by when its release was packaged (owner 2026-11-10), recorded here once and used by every rebuild of the release; it builds upstream commit 9e49d5e7a648, dated 2025-10-15T17:29:55Z (source.commit_epoch)."
+  },
+  "version": "RELEASE.2025-10-15T17-29-55Z"
+}

@@ -1,0 +1,62 @@
+{
+  "schema": "kitforge.build_recipe.v1",
+  "slug": "minio",
+  "image": "readystack/minio:RELEASE.2025-10-15T17-29-55Z-CE-ubuntu24.04-r13",
+  "build_method": "source-rebuild-go",
+  "source": {
+    "repo": "https://github.com/minio/minio",
+    "ref": "RELEASE.2025-10-15T17-29-55Z",
+    "builder_image": "golang:1.26.11-bookworm",
+    "go_version_required": "1.24.0",
+    "_version_note": "RELEASE.2025-10-15T17-29-55Z is the LATEST minio upstream RELEASE (gh api repos/minio/minio/releases/latest, published 2025-10-16, a Security/CVE release; commit 9e49d5e7a648f00e26f2246f4dc28e6b07f8c84a). minio uses DATE tags, NOT semver, and the GitHub release carries NO prebuilt binary assets \u2014 the binary MUST be source-built (queue-latest-version policy, owner 2026-06-25). go.mod directive is `go 1.24.0` / `toolchain go1.24.8`; the builder is golang:1.26-bookworm (with GOTOOLCHAIN=local so the current 1.26 toolchain compiles, never the stale go.mod-pinned go1.24.8) \u2014 building against the newer Go stdlib is the single highest-leverage C/H remediation (clears the dominant stale-stdlib-in-binary CVE class that has historically dragged minio's Scout grade). Verified LIVE on <redacted: internal host> in golang:1.26-bookworm: clean build (exit 0), 111MB static ELF ('not a dynamic executable'), `minio --version` => `minio version RELEASE.2025-10-15T17-29-55Z (commit-id=9e49d5e7...) / Runtime: go1.26.4 linux/amd64 / License: GNU AGPLv3`. NO source.vendor_build: the web Console UI is pre-built+vendored inside the github.com/minio/console dependency module (//go:embed build/*), so a plain `go build .` produces a working server WITH the embedded console \u2014 no Node/npm asset step.",
+    "source_date_epoch": 1795161125,
+    "source_date_epoch_provenance": "the time release RELEASE.2025-10-15T17-29-55Z-CE-ubuntu24.04-r13 was cut (2026-11-20T07:52:05Z), by scripts/retarget.py --rev-bump: ReadyStack dates an image by when its release was packaged (owner 2026-11-10), recorded here once and used by every rebuild of the release; it builds upstream commit 9e49d5e7a648, dated 2025-10-15T17:29:55Z (source.commit_epoch).",
+    "commit": "9e49d5e7a648f00e26f2246f4dc28e6b07f8c84a",
+    "source_date_epoch_basis": "release-cut",
+    "commit_epoch": 1760549395
+  },
+  "binaries_from_source": [
+    {
+      "name": "minio",
+      "main_pkg": ".",
+      "cgo_enabled": 0,
+      "build_tags": [
+        "kqueue"
+      ],
+      "ldflags": "-s -w -X github.com/minio/minio/cmd.Version=2025-10-15T17-29-55Z -X github.com/minio/minio/cmd.ReleaseTag=RELEASE.2025-10-15T17-29-55Z -X github.com/minio/minio/cmd.CommitID=9e49d5e7a648f00e26f2246f4dc28e6b07f8c84a -X github.com/minio/minio/cmd.ShortCommitID=9e49d5e7a648 -X github.com/minio/minio/cmd.CopyrightYear=2025",
+      "out_path": "/usr/bin/minio",
+      "verify_subcmd": "--version",
+      "_note": "Single static binary. main_pkg is the repo ROOT '.' (main.go calls minio.Main(os.Args)). The canonical upstream recipe is Makefile target line 181: `CGO_ENABLED=0 go build -tags kqueue -trimpath --ldflags \"$(go run buildscripts/gen-ldflags.go)\" -o minio .`. The version vars are declared in cmd/build-constants.go (defaults 'DEVELOPMENT.GOGET'); a plain `go build` without these -X flags reports DEVELOPMENT.GOGET, so the offline stage MUST stamp them explicitly here (the vendored --depth-1 tree has no git history for gen-ldflags.go to derive from). IMPORTANT: cmd.Version takes the DATE portion ONLY (2025-10-15T17-29-55Z, parsed via Go time layout 2006-01-02T15-04-05Z); the 'RELEASE.' prefix belongs only on cmd.ReleaseTag. CGO_ENABLED=0 + -tags kqueue yields a fully static ELF ('not a dynamic executable') ideal for the --network=none offline / non-root model. Verified live on <redacted: internal host>: go1.26.4, License GNU AGPLv3, embedded Console served at :9001 (WebUI banner + HTTP 200), /minio/health/live=200, runs as a non-root uid-999 minio user."
+    }
+  ],
+  "runtime_packages": [
+    "base-files",
+    "base-passwd",
+    "ca-certificates",
+    "coreutils",
+    "dash",
+    "gcc-14-base",
+    "libacl1",
+    "libattr1",
+    "libc6",
+    "libcap2",
+    "libcrypt1",
+    "libgcc-s1",
+    "libgmp10",
+    "libpcre2-8-0",
+    "libselinux1",
+    "libssl3t64",
+    "openssl",
+    "sed",
+    "tzdata"
+  ],
+  "runtime_base": {
+    "kind": "chisel",
+    "shell": true,
+    "tools": [
+      "sed",
+      "coreutils"
+    ],
+    "packages": "vendored/chisel/packages.tsv"
+  }
+}
